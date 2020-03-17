@@ -1,11 +1,13 @@
 import {Selector} from 'testcafe';
 
 fixture('testcafe demo')
-    .page('https.//www.google.com')
+    .page('https://www.google.com')
 
-Text('demo test google', async t => {
+test('demo test google', async t => {
     await t
         .typeText('input[name="q"]', 'testcafe')
-        .click('input[name="btnk]"')
-        .expect(Selector('div.elip').innerText).contains('TestCafe')
+        .click('input[name="btnK"]')
+        .expect(Selector('#rso', t).innerText).contains('TestCafe')
 });
+
+

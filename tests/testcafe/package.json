@@ -1,0 +1,15 @@
+{
+  "name": "testcafe-example",
+  "version": "1.0.0",
+  "description": "testcafe-example",
+  "main": "index.js",
+  "scripts": {
+    "test-testcafe": "./node_modules/.bin/testcafe chrome ./my_tests/google-search.test.js"
+  },
+  "author": "devuserPP",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "testcafe": "^1.8.2"
+  }
+}
