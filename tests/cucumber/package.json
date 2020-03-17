@@ -1,0 +1,24 @@
+{
+  "name": "cucumber-example",
+  "version": "1.0.0",
+  "description": "cucumber-example",
+  "main": "index.js",
+  "scripts": {
+    "debug": "node --inspect-brk node_modules/nightwatch/bin/runner.js --env chrome",
+    "e2e-json": "npx mkdirp ./tests_output/reports/screenshots && cucumber-js --require cucumber.conf.js --require features/step-definitions --format node_modules/cucumber-pretty --format json:tests_output/reports/cucumber_report.json",
+    "json2junit": "cat ./tests_output/reports/cucumber_report.json | ./node_modules/.bin/cucumber-junit > ./tests_output/reports/cucumber_report.xml"     
+  },
+  
+  "author": "devuserPP",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "nightwatch": "^1.2.4",
+    "nightwatch-api": "^2.3.0",
+    "cucumber": "^6.0.3",
+    "cucumber-pretty": "^6.0.0",
+    "cucumber-html-reporter": "^5.0.2",
+    "cucumber-junit": "^1.7.1"
+  }
+}

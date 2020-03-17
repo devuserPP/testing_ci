@@ -1,0 +1,4 @@
+./tests/cucumber/node_modules
+./tests/nightwatch/node_modules
+./tests/testcafe/node_modules
+*.todo
