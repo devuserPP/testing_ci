@@ -15,6 +15,7 @@ pipeline {
                     dir("./tests/nightwatch/") {                                                                    
                         sh 'npm install'
                         sh 'npm audit fix'
+                        sh 'npm audit'
                         sh 'ls -all'
                         
                     }
