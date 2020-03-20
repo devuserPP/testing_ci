@@ -24,7 +24,7 @@ pipeline {
         stage('Runing the test') {
             steps {
                      dir("./tests/nightwatch/") {
-                        sh 'npm test-nightwatch'                        
+                        sh 'npm run test-nightwatch'                        
                      }                        
             }
             post {    
