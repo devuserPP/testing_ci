@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "debug": "node --inspect-brk node_modules/nightwatch/bin/runner.js --env chrome",
-    "test-nighwatch": "./node_modules/.bin/nightwatch"
+    "test-nightwatch": "./node_modules/.bin/nightwatch"
   },
   "author": "devuserPP",
   "license": "ISC",
