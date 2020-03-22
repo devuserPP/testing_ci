@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'devuserpp/selenium-chromless'
+            args '-v /HOME/node.m2:/root/.m2'
         }
     }
     environment {
@@ -13,10 +14,8 @@ pipeline {
         stage('Install dependencies') {
             steps {
                     dir("./tests/nightwatch/") {                                                                    
-                        sh 'npm install'
-                        sh 'npm audit fix'
-                        sh 'npm audit'
-                        sh 'ls -all'
+                        sh "npm install"
+                        sh "ls -la ${pwd()}"
                         
                     }
             }    
@@ -25,7 +24,8 @@ pipeline {
         stage('Runing the test') {
             steps {
                      dir("./tests/nightwatch/") {
-                        sh 'npm run test-nightwatch'                        
+                         sh "npm run test-nightwatch"
+                         sh "ls -la ${pwd()}"
                      }                        
             }
             post {    
