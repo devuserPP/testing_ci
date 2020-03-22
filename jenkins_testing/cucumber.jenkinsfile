@@ -1,0 +1,50 @@
+pipeline {
+        agent {
+        docker {
+            image 'devuserpp/selenium-chromless'
+            args '-v /HOME/node.m2:/root/.m2'
+            }
+        }
+        environment {
+        HOME = '.'
+        }
+    stages {
+        stage ('Clone') {
+            steps {
+                git branch: 'cucumber', url: "https://github.com/devuserPP/testing_ci"
+            }
+        }
+        stage('Install dependencies') {
+                steps {
+                        dir("./tests/cucumber/") {                                                                                               
+                            sh 'yarn install'
+                             sh "ls -la ${pwd()}"
+                            
+                            
+
+                        }
+                }    
+        }
+        stage('Runing the test') {
+            steps {
+                     dir("./tests/cucumber/") {                        
+                        sh "npm run e2e-json"
+                        sh "npm run json2junit"
+                        sh "ls -la ${pwd()}"
+                     }                        
+            }
+            post {    
+                always {
+                        dir("./tests/cucumber/tests_output/reports") {                                               
+                        archiveArtifacts artifacts: '*.log', fingerprint: true
+                        junit '*.xml'
+                        
+                        }
+
+
+                }
+
+            }
+        }
+    }
+}
