@@ -1,3 +1,5 @@
+//Required plugins:
+//Cucumber reports; Git
 pipeline {
         agent {
         docker {
