@@ -1,0 +1,49 @@
+pipeline {
+        agent {
+        docker {
+            image 'devuserpp/selenium-chromless'
+            args '-v /HOME/node.m2:/root/.m2'
+            }
+        }
+        environment {
+        HOME = '.'
+        }
+    stages {
+        stage ('Clone') {
+            steps {
+                git branch: 'nightwatch', url: "https://github.com/devuserPP/testing_ci"
+            }
+        }
+        stage('Install dependencies') {
+                steps {
+                        dir("./tests/nightwatch/") {                                                                    
+                            sh "ls -la ${pwd()}"
+                            sh 'npm install'
+                            
+                            
+
+                        }
+                }    
+        }
+        stage('Runing the test') {
+            steps {
+                     dir("./tests/nightwatch/") {
+                        sh "ls -la ${pwd()}"
+                        sh 'npm run test-nightwatch'                        
+                     }                        
+            }
+            post {    
+                always {
+                        dir("./tests/nightwatch/tests_output/reports") {                                               
+                        archiveArtifacts artifacts: '*.log', fingerprint: true
+                        junit '*.xml'
+                        
+                        }
+
+
+                }
+
+            }
+        }
+    }
+}
