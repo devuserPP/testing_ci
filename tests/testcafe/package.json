@@ -8,6 +8,7 @@
     "test-testcafe/cucumber": "npx mkdirp ./tests_output/reports/screenshots && cucumber-js --format json:tests_output/reports/cucumber_report.json",
     "test-chrome-headless": "./node_modules/.bin/cucumber-js  --world-parameters \"{\\\"browser\\\": \\\"chrome:headless\\\"}\"",
     "test-generate/html": "node index.js",
+    "json2junit": "cat ./tests_output/reports/cucumber_report.json | ./node_modules/.bin/cucumber-junit > ./tests_output/reports/cucumber_report.xml",
     "test-run":"npm run test-testcafe/cucumber && npm run test-generate/html"
     
 
@@ -21,6 +22,7 @@
   "devDependencies": {
     "cucumber": "^6.0.5",
     "cucumber-html-reporter": "^5.1.0",
-    "testcafe": "^1.8.3"
+    "testcafe": "^1.8.3",
+    "cucumber-junit": "^1.7.1"
   }
 }
