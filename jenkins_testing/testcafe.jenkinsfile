@@ -1,0 +1,56 @@
+//Required plugins:
+//Cucumber reports; Git
+pipeline {
+        agent {
+        docker {
+            image 'devuserpp/selenium-chromless'
+            args '-v /HOME/node.m2:/root/.m2'
+            }
+        }
+        environment {
+        HOME = '.'
+        }
+    stages {
+        stage ('Clone') {
+            steps {
+                git branch: 'master', url: "https://github.com/devuserPP/testing_ci"
+            }
+        }
+        stage('Install dependencies') {
+                steps {
+                        dir("./tests/testcafe/") {                                                                                               
+                            sh 'yarn install'
+                             sh "ls -la ${pwd()}"
+                            
+                            
+
+                        }
+                }    
+        }
+        stage('Runing the test') {
+            steps {
+                     dir("./tests/testcafe/") {                        
+                        sh "npm run test-chrome-headless"
+                        sh "npm run test-generate/html"
+                        sh 'npm run json2junit'                         
+                        sh "ls -la ${pwd()}"
+                     }                        
+            }
+            post {    
+                always {
+                        dir("./tests/testcafe/tests_output/reports") {                       
+                        cucumber jsonReportDirectory: './',
+                                 fileIncludePattern: "cucumber_report.json"
+                        junit '*.xml'
+                        publishHTML([allowMissing: true, alwaysLinkToLastBuild: false, keepAll: true, reportDir: './', reportFiles: 'cucumber_report.html', reportName: 'HTML Report', reportTitles: 'My Report'])
+
+
+                        }
+
+
+                }
+
+            }
+        }
+    }
+}
