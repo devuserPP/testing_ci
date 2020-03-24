@@ -30,8 +30,7 @@ pipeline {
         stage('Runing the test') {
             steps {
                      dir("./tests/testcafe/") {                        
-                        sh "npm run test-chrome-headless"
-                        sh "npm run test-generate/html"
+                        sh "npm run test-chrome-headless"                        
                         sh 'npm run json2junit'                         
                         sh "ls -la ${pwd()}"
                      }                        
