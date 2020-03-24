@@ -4,12 +4,21 @@
   "description": "testcafe-example",
   "main": "index.js",
   "scripts": {
-    "test-testcafe": "./node_modules/.bin/testcafe chrome ./my_tests/google-search.test.js"
+    "test-testcafe": "./node_modules/.bin/testcafe chrome ./my_tests/google-search.test.js",
+    "test-testcafe/cucumber": "npx mkdirp ./tests_output/reports/screenshots && cucumber-js --format json:tests_output/reports/cucumber_report.json",
+    "test-generate/html": "node index.js",
+    "test-run":"npm run test-testcafe/cucumber && npm run test-generate/html"
+
   },
   "author": "devuserPP",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "base64-img": "^1.0.4",
+    "mkdirp": "^1.0.3"
+  },
   "devDependencies": {
-    "testcafe": "^1.8.2"
+    "cucumber": "^6.0.5",
+    "cucumber-html-reporter": "^5.1.0",
+    "testcafe": "^1.8.3"
   }
 }
