@@ -6,7 +6,7 @@
   "scripts": {
     "test-testcafe": "./node_modules/.bin/testcafe chrome ./my_tests/google-search.test.js",
     "test-testcafe/cucumber": "npx mkdirp ./tests_output/reports/screenshots && cucumber-js --format json:tests_output/reports/cucumber_report.json",
-    "test-chrome-headless": "npx mkdirp ./tests_output/reports/screenshots && ./node_modules/.bin/cucumber-js  --world-parameters \"{\\\"browser\\\": \\\"chrome:headless\\\"}\" --format json:tests_output/reports/cucumber_report.json",
+    "test-chrome-headless": "npx mkdirp ./tests_output/reports/screenshots && cucumber-js --world-parameters \"{\\\"browser\\\": \\\"chrome:headless\\\"}\" --format json:tests_output/reports/cucumber_report.json",
     "json2html": "node index.js",
     "json2junit": "cat ./tests_output/reports/cucumber_report.json | ./node_modules/.bin/cucumber-junit > ./tests_output/reports/cucumber_report.xml",
     "test-run":"npm run test-testcafe/cucumber && npm run test-generate/html"
