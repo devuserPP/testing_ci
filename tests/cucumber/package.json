@@ -14,7 +14,7 @@
   "dependencies": {},
   "devDependencies": {
     "mkdirp": "^0.5.1",
-    "nightwatch": "^1.2.4",
+    "nightwatch": "^1.4.0",
     "nightwatch-api": "^2.3.0",
     "cucumber": "^6.0.3",
     "cucumber-pretty": "^6.0.0",
