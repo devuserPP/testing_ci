@@ -22,7 +22,7 @@
   "devDependencies": {
     "cucumber": "^6.0.5",
     "cucumber-html-reporter": "^5.1.0",
-    "testcafe": "^1.8.3",
+    "testcafe": "^1.20.1",
     "cucumber-junit": "^1.7.1"
   }
 }
